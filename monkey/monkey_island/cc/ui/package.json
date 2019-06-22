@@ -6,6 +6,7 @@
     "clean": "rimraf dist/*",
     "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist",
     "dist": "webpack --mode production",
+    "dev": "webpack --mode development",
     "lint": "eslint ./src",
     "posttest": "npm run lint",
     "release:major": "npm version major && npm publish && git push --follow-tags",
@@ -64,6 +65,8 @@
     "webpack-dev-server": "^3.1.9"
   },
   "dependencies": {
+    "@kunukn/react-collapse": "^1.0.5",
+    "classnames": "^2.2.6",
     "bootstrap": "3.4.1",
     "core-js": "^2.5.7",
     "downloadjs": "^1.4.7",
@@ -98,6 +101,7 @@
     "sass-loader": "^7.1.0",
     "sha3": "^2.0.0",
     "react-spinners": "^0.5.4",
-    "@emotion/core": "^10.0.10"
+    "@emotion/core": "^10.0.10",
+    "react-desktop-notification": "^1.0.9"
   }
 }
