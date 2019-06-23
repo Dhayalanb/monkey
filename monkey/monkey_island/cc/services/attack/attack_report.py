@@ -42,7 +42,11 @@ class AttackReportService:
         Gets timestamp of latest attack telem
         :return: timestamp of latest attack telem
         """
-        return [x['timestamp'] for x in mongo.db.telemetry.find({'telem_catagory': 'attack'}).sort('timestamp', -1).limit(1)][0]
+        telem_attack = mongo.db.telemetry.find({'telem_catagory': 'attack'})
+        if not telem_attack:
+            return [x['timestamp'] for x in telem_attack.sort('timestamp', -1).limit(1)][0]
+        else:
+            return "Telem is empty"
 
     @staticmethod
     def get_latest_report():
@@ -65,3 +69,4 @@ class AttackReportService:
         """
         generated_report = mongo.db.attack_report.find_one({})
         return generated_report is not None
+
