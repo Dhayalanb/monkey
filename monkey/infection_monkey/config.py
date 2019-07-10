@@ -6,7 +6,6 @@ import uuid
 from abc import ABCMeta
 from itertools import product
 import importlib
-import pe.snapd
 
 __author__ = 'itamar'
 
