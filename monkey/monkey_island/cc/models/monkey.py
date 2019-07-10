@@ -2,8 +2,8 @@
 Define a Document Schema for the Monkey document.
 """
 import mongoengine
-from mongoengine import Document, StringField, ListField, BooleanField, EmbeddedDocumentField, DateField, \
-    ReferenceField
+from mongoengine import Document, StringField, ListField, BooleanField, EmbeddedDocumentField, ReferenceField, \
+    DateTimeField
 
 from monkey_island.cc.models.monkey_ttl import MonkeyTtl
 
@@ -25,14 +25,15 @@ class Monkey(Document):
     hostname = StringField()
     internet_access = BooleanField()
     ip_addresses = ListField(StringField())
-    keepalive = DateField()
-    modifytime = DateField()
+    keepalive = DateTimeField()
+    modifytime = DateTimeField()
     # TODO change this to an embedded document as well - RN it's an unnamed tuple which is confusing.
     parent = ListField(ListField(StringField()))
     config_error = BooleanField()
     critical_services = ListField(StringField())
     pba_results = ListField()
     ttl_ref = ReferenceField(MonkeyTtl)
+    tunnel = ReferenceField("self")
 
     # LOGIC
     @staticmethod
@@ -41,6 +42,10 @@ class Monkey(Document):
             return Monkey.objects(id=db_id)[0]
         except IndexError:
             raise MonkeyNotFoundError("id: {0}".format(str(db_id)))
+
+    @staticmethod
+    def get_latest_modifytime():
+        return Monkey.objects.order_by('-modifytime').first().modifytime
 
     def is_dead(self):
         monkey_is_dead = False
