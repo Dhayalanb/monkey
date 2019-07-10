@@ -54,7 +54,7 @@ SCHEMA = {
                         "SSHExploiter"
                     ],
                     "title": "SSH Exploiter",
-                    "attack_techniques": ["T1110"]
+                    "attack_techniques": ["T1110", "T1145"]
                 },
                 {
                     "type": "string",
@@ -89,7 +89,7 @@ SCHEMA = {
                     "enum": [
                         "WebLogicExploiter"
                     ],
-                    "title": "Oracle Web Logic Exploiter"
+                    "title": "WebLogic Exploiter"
                 },
                 {
                     "type": "string",
@@ -435,6 +435,7 @@ SCHEMA = {
                             "title": "Collect system info",
                             "type": "boolean",
                             "default": True,
+                            "attack_techniques": ["T1082"],
                             "description": "Determines whether to collect system info"
                         },
                         "should_use_mimikatz": {
