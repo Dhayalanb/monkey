@@ -64,7 +64,7 @@ class PtraceScopeExploiter(HostPrivExploiter):
         for pid in pidlist:
             # ("Trying to inject %s" % pid)
             gdb = GDB % {'pid': pid}
-            run_monkey = runMonkey % {'commandline'}
+            run_monkey = runMonkey % {'commandline':command_line}
             shell(run_monkey + " | " + gdb)
 
             # Check if the injection was successful by checking if the owner of the monkey is root
