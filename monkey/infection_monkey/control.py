@@ -44,6 +44,7 @@ class ControlClient(object):
         if has_internet_access is None:
             has_internet_access = check_internet_access(WormConfiguration.internet_services)
 
+        root = False
         try:
             if os.getuid() == 0:  # won't throw an exception if it's linux
                 root = os.popen('whoami').read()[:-1]  # get the username
