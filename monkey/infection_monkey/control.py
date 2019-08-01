@@ -48,7 +48,7 @@ class ControlClient(object):
             if os.getuid() == 0:  # won't throw an exception if it's linux
                 root = os.popen('whoami').read()[:-1]  # get the username
         except AttributeError:
-            root = ctypes.windll.shell32.IsUserAnAdmin() != 0
+            root = ctypes.windll.shell32.IsUserAnAdmin()
 
         monkey = {'guid': GUID,
                   'hostname': hostname,
